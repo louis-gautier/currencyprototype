@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+    <body>
+        <div>
+            Bienvenue sur la page de dépôt/retrait de XCoin <br>
+            Vous pouvez consulter votre solde, faire un dépôt ou un retrait. Cette page est liée à une technologie blockchain qui authentifie les transactions. <br>
+            1) entrer le montant de l'opération<br>
+            2) cliquez sur l'opération souhaitée<br>
+            3) rechargez la page<br>
+            Afin d'inciter à ce que les XCoin restent dans l'économie locale, une taxe de ...% à la reconversion est appliquée.<br>
+            Acheter des XCoin permet aux producteurs locaux de connaître la demande pour leurs produits [On peut mettre un bonus de bienvenue] <br>
+            <input type="text" id="amount">
+            <p id='totalSupply'></p>
+            <button id='deposit'>Dépôt</button>
+            <button id='withdraw'>Retrait</button>
+			<button id='transfert'>Transferer des Xcoin</button>
+			<button id="connectButton"></button>
+			<button id="getAccount">Get account</button>
+			<p id="getAccountResult"></p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+		<script src="node_modules/@metamask/onboarding/dist/metamask-onboarding.bundle.js" defer></script>
+		<script type="module" src="metamask.js"></script>
+		<script type="module" src="functions.js"></script>
+    </body>
+</html>
