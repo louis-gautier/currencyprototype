@@ -4,26 +4,35 @@
     <body>
         <div>
             Bienvenue sur la page de dépôt/retrait de XCoin <br>
-            Vous pouvez consulter votre solde, faire un dépôt ou un retrait. Cette page est liée à une technologie blockchain qui authentifie les transactions. <br>
-            1) entrer le montant de l'opération<br>
-            2) cliquez sur l'opération souhaitée<br>
-            3) rechargez la page<br>
-            Afin d'inciter à ce que les XCoin restent dans l'économie locale, une taxe de ...% à la reconversion est appliquée.<br>
-            Acheter des XCoin permet aux producteurs locaux de connaître la demande pour leurs produits [On peut mettre un bonus de bienvenue] <br>
+            <button id="connectButton"></button>
+            <div id="pagecontent">
+            <p>Votre solde : <p id="solde"></p></p>
+            <p>Euro vers Xcoin</p>
+            <input type="text" id="amountEURXCN">
+            <button id='pay'>Payer</button>
+            <div id="afterPayment">
+            <p>Le paiemenent s'est bien déroulé. Cliquez ci-dessous pour obtenir les XCoins correspondants</p>
+            <button id='withdrawXCN'>Recevoir vos Xcoins</button></div>
+            <p>Xcoin vers Euro</p>
+            <input type="text" id="amountXCNEUR">
+            <button id='payXCN'>Recevoir vos Euros</button>
+            <div id="afterXCNEUR"><p>
+                Vous avez bien converti vos Xcoins en Euros. À bientôt.
+            </p></div>
+
+            <p>Transfert</p>
             <input type="text" id="amount">
-            <p id='totalSupply'></p>
-            <button id='deposit'>Dépôt</button>
-            <button id='withdraw'>Retrait</button>
-			<button id='transfert'>Transferer des Xcoin</button>
-			<button id="connectButton"></button>
+            <input type="text" id="destination">
+			<button id='transfer'>Transférer des Xcoin</button>
+			<p>Qui êtes-vous ?</p>
 			<button id="getAccount">Get account</button>
-			<p id="getAccountResult"></p>
+			<p id="getAccountResult"></p></div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
 		<script src="node_modules/@metamask/onboarding/dist/metamask-onboarding.bundle.js" defer></script>
 		<script type="module" src="metamask.js"></script>
-		<script type="module" src="index.js"></script>
+		<script type="module" src="indexo.js"></script>
     </body>
 </html>
