@@ -6,14 +6,14 @@ pragma solidity ^0.4.0;
 import "ERC20.sol";
 // DEBUT DU CONTRAT 
 contract Xcoin is ERC20{
-    string public constant symbol = "Xco";
+    string public constant symbol = "XCN";
     string public constant name = "Xcoin";
     
     //FRACTIONS POSSIBLES OU NOMBRE DE CHIFFRES DERRIERE LE VIRGULE 
-    uint8 public constant decimals = 18;
+    uint8 public constant decimals = 0;
     
     //NOMBRE DE Xcoin initiale
-    uint private constant __totalSupply = 100000;
+    uint private constant __totalSupply = 1000000;
     
     //MAPPING EST UNE table de hachage OU ON VA STOCKER LES soldes presents sur chaque compte
     mapping (address => uint) private __balanceOf;
@@ -39,6 +39,10 @@ contract Xcoin is ERC20{
     //return solde du compte
     function balanceOf(address _addr) public constant returns (uint balance) {
         return __balanceOf[_addr];
+    }
+    
+    function balanceOfSender() public constant returns (uint balance){
+        return  __balanceOf[msg.sender];
     }
     
     
@@ -81,7 +85,7 @@ contract Xcoin is ERC20{
         return __allowances[_owner][_spender];
     }
 
-    function getOwnerAddress() public constant returns (address){
+    function getOwnerAddress() public constant returns (address ownad){
         return owner;
     }
 }
