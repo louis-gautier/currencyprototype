@@ -18,6 +18,7 @@ contract Xcoin is ERC20{
     //MAPPING EST UNE table de hachage OU ON VA STOCKER LES soldes presents sur chaque compte
     mapping (address => uint) private __balanceOf;
     address owner;
+    mapping (address => bool) private verifyLocal;
     
     //__allowances inclura tous les comptes approuvés pour un retrait d'un compte donné ainsi 
     //que la somme de retrait autorisée pour chacun
@@ -29,6 +30,7 @@ contract Xcoin is ERC20{
         //__totalSupply = total;
         owner = msg.sender;
         __balanceOf[msg.sender] = __totalSupply;
+        verifyLocal[msg.sender] = true;
 }
 
 // constant:read only
@@ -51,7 +53,7 @@ contract Xcoin is ERC20{
 /// @param _value The amount of token to be transferred
 /// @return Whether the transfer was successful or not
     function transfer(address _to, uint _value) public returns (bool success) {
-        if (_value > 0 && _value <= balanceOf(msg.sender)) {
+        if (_value > 0 && _value <= balanceOf(msg.sender) && verifyLocal[msg.sender] && verifyLocal[_to]) {
             __balanceOf[msg.sender] -= _value;
             __balanceOf[_to] += _value;
             return true;
@@ -63,14 +65,14 @@ contract Xcoin is ERC20{
     }
     
     function transferFrom(address _from, address _to, uint _value) public returns (bool success) {
-        if (__allowances[_from][msg.sender] > 0 &&
+         if (__allowances[_from][_to] > 0 &&
             _value > 0 &&
-            __allowances[_from][msg.sender] >= _value && 
-            __balanceOf[_from] >= _value) {
+            __allowances[_from][_to] >= _value && 
+            __balanceOf[_from] >= _value && verifyLocal[_to]) {
             __balanceOf[_from] -= _value;
             __balanceOf[_to] += _value;
             
-            __allowances[_from][msg.sender] -= _value;
+            __allowances[_from][_to] -= _value;
             return true;
         }
         return false;
@@ -87,5 +89,12 @@ contract Xcoin is ERC20{
 
     function getOwnerAddress() public constant returns (address ownad){
         return owner;
+    }
+    function approveLocal(address user) public returns (bool success){
+        verifyLocal[user]=true;
+        return true;
+    }
+    function isLocal() public returns (bool islocal){
+        retrun verifyLocal[msg.sender];
     }
 }
